@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.example.demo; 
 
 import org.junit.Test; 
 import org.junit.Before; 
@@ -12,17 +12,15 @@ import org.springframework.test.context.junit4.SpringRunner;
 * MailServiceImpl Tester. 
 * 
 * @author <Authors name> 
-* @since <pre>09/29/2018</pre> 
+* @since <pre>$month $year</pre> 
 * @version 1.0 
 */
-
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class MailServiceImplTest {
+public class MailServiceImplTest { 
+
     @Autowired
     private  MailService mailService;
-
-
 @Before
 public void before() throws Exception { 
 } 
@@ -40,6 +38,18 @@ public void after() throws Exception {
 public void testSendMail() throws Exception { 
 //TODO: Test goes here...
     mailService.sendMail("475534279@qq.com","test simple mail"," hello this is simple mail");
+
+} 
+
+/** 
+* 
+* Method: sendAttachmentsMail(String to, String subject, String content, String filePath) 
+* 
+*/ 
+@Test
+public void testSendAttachmentsMail() throws Exception { 
+//TODO: Test goes here...
+    mailService.sendAttachmentsMail("475534279@qq.com","test simple mail","hello this is simple mail","E:\\java学习路线.jpg");
 } 
 
 
