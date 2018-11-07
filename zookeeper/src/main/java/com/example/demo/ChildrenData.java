@@ -8,7 +8,7 @@ import org.I0Itec.zkclient.ZkClient;
  */
 public class ChildrenData {
     public static void main(String[] args) {
-        String zkServer="192.168.0.116:2181";
+        String zkServer="127.0.0.1:2181";
         String path="/zk-permanent";
         ZkClient zkClient=new ZkClient(zkServer,5000);
         zkClient.subscribeDataChanges(path, new IZkDataListener() {
