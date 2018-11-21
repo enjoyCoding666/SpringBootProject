@@ -17,9 +17,9 @@ public class SystemController {
     private Logger logger = LoggerFactory.getLogger(SystemController.class);
 
     @Autowired
-    KafkaProducer kafkaProducer;
+    private KafkaProducer kafkaProducer;
 
-    @RequestMapping(value = "/Kafka/send", method = RequestMethod.GET)
+    @RequestMapping(value = "/kafka/send", method = RequestMethod.GET)
     public void warnInfo() throws Exception {
         int count = 10;
         for (int i = 0; i < count; i++) {

@@ -15,11 +15,12 @@ public class KafkaConsumer {
     public static final Logger logger = LoggerFactory.getLogger(KafkaConsumer.class);
 
 
-    @KafkaListener(topics = {"MQ"})
+    @KafkaListener(topics = {"userAccout"})
     public void jktopic(ConsumerRecord consumerRecord) throws InterruptedException {
 
-        System.out.println(consumerRecord.offset());
-        System.out.println(consumerRecord.value().toString());
+        logger.debug("消费者接收到信息：");
+        logger.debug("offSet:"+consumerRecord.offset());
+        logger.debug(consumerRecord.value().toString());
         Thread.sleep(3000);
 
     }
