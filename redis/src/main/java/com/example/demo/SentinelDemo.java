@@ -2,11 +2,9 @@ package com.example.demo;
 
 import org.apache.log4j.Logger;
 import redis.clients.jedis.Jedis;
-import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPoolConfig;
 import redis.clients.jedis.JedisSentinelPool;
 
-import java.nio.channels.SelectionKey;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;

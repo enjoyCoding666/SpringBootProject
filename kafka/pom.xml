@@ -14,8 +14,8 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>1.5.17.RELEASE</version>
-        <!--<version>2.0.6.BUILD-SNAPSHOT</version>-->
+        <!--<version>1.5.17.RELEASE</version>-->
+        <version>2.0.6.BUILD-SNAPSHOT</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
@@ -68,7 +68,7 @@
                     </descriptorRefs>
                     <archive>
                         <manifest>
-                            <mainClass>com.example.demo.KafkaDemoApplication</mainClass>
+                            <mainClass>com.example.demo.KafkaDemo1</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
@@ -77,7 +77,8 @@
                         <id>make-assembly</id>
                         <phase>package</phase>
                         <goals>
-                            <goal>assembly</goal>
+                            <!--只打包成一个jar包-->
+                            <goal>single</goal>
                         </goals>
                     </execution>
                 </executions>
@@ -87,6 +88,7 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
+
         </plugins>
     </build>
 

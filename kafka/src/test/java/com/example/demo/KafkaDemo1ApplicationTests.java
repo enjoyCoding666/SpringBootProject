@@ -7,7 +7,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class KafkaDemoApplicationTests {
+public class KafkaDemo1ApplicationTests {
 
     @Test
     public void contextLoads() {
