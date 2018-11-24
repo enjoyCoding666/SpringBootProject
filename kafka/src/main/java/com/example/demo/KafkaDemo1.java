@@ -15,7 +15,7 @@ public class KafkaDemo1 {
         ConfigurableApplicationContext context= SpringApplication.run(KafkaDemo1.class,args);
         KafkaProducer kafkaProducer=(KafkaProducer) context.getBean("kafkaProducer");
 
-        for(int i=0;i<10;i++) {
+        for(int i=0;i<5;i++) {
             kafkaProducer.kafkaSend();
             Thread.sleep(3000);
         }

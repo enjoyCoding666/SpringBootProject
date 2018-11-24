@@ -21,7 +21,7 @@ public class SystemController {
 
     @RequestMapping(value = "/kafka/send", method = RequestMethod.GET)
     public void warnInfo() throws Exception {
-        int count = 10;
+        int count = 5;
         for (int i = 0; i < count; i++) {
             kafkaProducer.kafkaSend();
         }

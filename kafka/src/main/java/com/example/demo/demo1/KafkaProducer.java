@@ -27,7 +27,7 @@ public class KafkaProducer {
         UserAccount userAccount=new UserAccount();
         userAccount.setCard_name("cardName");
         userAccount.setAddress("address");
-        logger.debug("尝试使用kafka发送信息：");
+        logger.debug("使用kafka发送信息：");
         ListenableFuture send = kafkaTemplate.send("test", "key", JSON.toJSONString(userAccount));
 
     }
