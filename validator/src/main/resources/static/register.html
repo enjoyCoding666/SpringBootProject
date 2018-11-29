@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>注册</title>
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+</head>
+<script type="text/javascript" >
+
+    $(document).ready( function () {
+
+        $("#commit").click(function () {
+            var form =new FormData($( "#form-user")[0] );
+            console.log("ajax");
+            $.ajax({
+                type:"POST",                             //请求的类型
+                url:"/user/test",                  //请求的路径
+                data: form  ,                    //请求的参数
+                async: false,
+                cache: false,
+                contentType: false,
+                processData: false,
+                success: function (msg) {                 //成功返回触发的方法
+                    console.log("ajax请求成功")
+                },
+                //请求失败触发的方法
+                error:function(XMLHttpRequest, textStatus, errorThrown){
+                    console.log("ajax请求失败");
+                    console.log("请求对象XMLHttpRequest: "+XMLHttpRequest);
+                    console.log("错误类型textStatus: "+textStatus);
+                    console.log("异常对象errorThrown: "+errorThrown);
+                }
+            })
+        })
+        }
+    );
+</script>
+
+<body>
+    <form  id="form-user">
+        账号：
+       <input type="text" name="userName">  <br>
+        年龄:    
+       <input type="text" name="age">     <br>
+        vip :
+         是:  <input type="checkbox" name="isVip" value="true">
+         否:  <input type="checkbox" name="isVip" value="false">           <br>
+         生日： 
+       <input type="date" name="birthday">            <br>
+       <button id="commit" >提交</button>
+    </form>
+</body>
+</html>
