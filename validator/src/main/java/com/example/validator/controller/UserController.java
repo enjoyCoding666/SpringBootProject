@@ -4,6 +4,7 @@ import com.example.validator.pojo.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -29,15 +30,37 @@ public class UserController {
     /**
      * 使用postman软件，发送json请求。检验Validator是否有效
      * 比如，{"userName":"dd","age":20,"isFalse":true,"birthday":"2100-21-12"}
+     * 使用BindingResult类时，前一个参数必须有@Valid注解，不然会出错。
      * @param user
      * @param result
      */
-    @RequestMapping(value = "/validator",method = RequestMethod.POST )
-    public void demo(@RequestBody @Valid User user,  BindingResult result){
+    @PostMapping(value = "/validJson")
+    public void checkObject(@RequestBody @Valid User user,  BindingResult result){
         if(result.hasErrors()){
             for (ObjectError error : result.getAllErrors()) {
                 System.out.println(error.getDefaultMessage());
             }
         }
     }
+
+    /**
+     * @Valid无法校验@RequestParam参数
+     * @param userName
+     */
+    @PostMapping(value = "/validParam")
+    public  void checkValidParam (@RequestParam("userName")  @Valid  String userName  ){
+        System.out.println("userName"+userName);
+
+    }
+
+    /**
+     * @Validated无法校验@RequestParam参数
+     * @param userName
+     */
+    @PostMapping(value = "/validatedParam")
+    public  void checkValidatedParam (@RequestParam("userName") @Validated  String userName ){
+        System.out.println("userName"+userName);
+
+    }
+
 }
