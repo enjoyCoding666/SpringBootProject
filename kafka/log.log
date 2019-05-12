@@ -1,0 +1,4 @@
+2018-11-24 13:35:15 [main] [INFO ] c.e.demo.KafkaDemo1ApplicationTests - Starting KafkaDemo1ApplicationTests on YT3B8UP335CJGJ7 with PID 4284 (started by Administrator in G:\JavaWebDemo\SpringBootDemo\kafka)
+2018-11-24 13:35:15 [main] [DEBUG] c.e.demo.KafkaDemo1ApplicationTests - Running with Spring Boot v2.0.6.BUILD-SNAPSHOT, Spring v5.0.10.RELEASE
+2018-11-24 13:35:15 [main] [INFO ] c.e.demo.KafkaDemo1ApplicationTests - No active profile set, falling back to default profiles: default
+2018-11-24 13:35:17 [main] [INFO ] c.e.demo.KafkaDemo1ApplicationTests - Started KafkaDemo1ApplicationTests in 4.016 seconds (JVM running for 4.844)
