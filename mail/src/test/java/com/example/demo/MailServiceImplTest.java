@@ -11,7 +11,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 /** 
 * MailServiceImpl Tester. 
 * 
-* @author <Authors name> 
+* @author <Authors userName>
 * @since <pre>$month $year</pre> 
 * @version 1.0 
 */

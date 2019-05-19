@@ -1,6 +1,7 @@
 package com.example.demo.service;
 
 import com.example.demo.exception.BusinessException;
+import com.example.demo.pojo.User;
 
 /**
  * @Auther: Administrator
@@ -8,5 +9,7 @@ import com.example.demo.exception.BusinessException;
  * @Description:
  */
 public interface ExceptionService {
-    void getInfoById(Integer id) throws BusinessException;
+    User getUserById(Integer id) ;
+
+    String getUserName(User user) ;
 }

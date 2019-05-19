@@ -8,8 +8,8 @@ import redis.clients.jedis.Jedis;
 public class RedisUtilsDemo {
     public static void main(String[] args) {
         Jedis jedis=RedisUtils.getJedis();
-        String name=jedis.get("name");
-        System.out.println("name:"+name);
+        String name=jedis.get("userName");
+        System.out.println("userName:"+name);
 
     }
 

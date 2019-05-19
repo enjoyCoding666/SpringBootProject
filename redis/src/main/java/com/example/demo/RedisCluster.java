@@ -36,7 +36,7 @@ public class RedisCluster {
         //创建集群实例
         JedisCluster jedisCluster=new JedisCluster(nodes,jedisPoolConfig);
 
-        String name= jedisCluster.get("name");
+        String name= jedisCluster.get("userName");
         logger.debug("查询集群，得知key为name的对应value为："+name);
 
     }
