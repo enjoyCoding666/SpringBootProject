@@ -32,7 +32,7 @@ public class SolrController {
         try {
             SolrInputDocument doc = new SolrInputDocument();
             doc.setField("id", uuid);
-            doc.setField("content_ik", "我是中国人, 我爱中国");
+            doc.setField("content_ik", "SolrTest");
 
             /* 如果spring.data.solr.host 里面配置到 core了, 那么这里就不需要传 collection1 这个参数
              * 下面都是一样的
@@ -64,8 +64,6 @@ public class SolrController {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-
         return "error";
     }
 
@@ -92,7 +90,7 @@ public class SolrController {
      * @return
      * @throws Exception
      */
-    @RequestMapping("getById")
+    @RequestMapping("get/id")
     public String getById() throws Exception {
         SolrDocument document = client.getById("collection1", "536563");
         System.out.println(document);
