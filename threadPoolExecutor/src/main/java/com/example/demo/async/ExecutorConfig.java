@@ -21,7 +21,7 @@ import java.util.concurrent.ThreadPoolExecutor;
 
 @Slf4j
 @Configuration
-@EnableAsync
+
 public class ExecutorConfig {
 
     @Bean
