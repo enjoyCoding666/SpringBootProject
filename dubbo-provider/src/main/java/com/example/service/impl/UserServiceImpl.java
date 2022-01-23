@@ -22,7 +22,7 @@ public class UserServiceImpl implements UserService {
     public User getUserById(String userId) {
         User user = new User();
         user.setUserId(Long.valueOf(userId));
-        user.setResponseInfo("test");
+        user.setUserInfo("test");
         user.setUserName("lin");
         return user;
     }
