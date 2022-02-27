@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.example</groupId>
     <artifactId>dubbo-consumer</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0-SNAPSHOT</version>
     <name>dubbo-consumer</name>
     <description>Demo project for Spring Boot</description>
 
@@ -16,6 +16,7 @@
         <dubbo.version>2.7.5</dubbo.version>
         <curator.version>4.2.0</curator.version>
         <zookeeper.version>3.4.12</zookeeper.version>
+        <!-- 引入服务提供者的依赖，注意版本号 -->
         <dubbo-provider.version>1.0-SNAPSHOT</dubbo-provider.version>
     </properties>
 
