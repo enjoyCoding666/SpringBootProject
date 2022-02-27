@@ -15,7 +15,7 @@
         <spring-boot.version>2.2.2.RELEASE</spring-boot.version>
         <dubbo.version>2.7.5</dubbo.version>
         <curator.version>4.2.0</curator.version>
-        <zookeeper.version>3.4.12</zookeeper.version>
+        <zookeeper.version>3.4.14</zookeeper.version>
         <!-- 引入服务提供者的依赖，注意版本号 -->
         <dubbo-provider.version>1.0-SNAPSHOT</dubbo-provider.version>
     </properties>
