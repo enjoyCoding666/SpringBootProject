@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.example.demo.demo;
 
 import org.apache.log4j.Logger;
 import redis.clients.jedis.HostAndPort;
@@ -32,12 +32,15 @@ public class RedisCluster {
         nodes.add(hostAndPort5);
 
         //创建JedisPoolConfig实例
-        JedisPoolConfig jedisPoolConfig=new JedisPoolConfig();
+        JedisPoolConfig jedisPoolConfig = new JedisPoolConfig();
         //创建集群实例
-        JedisCluster jedisCluster=new JedisCluster(nodes,jedisPoolConfig);
-
-        String name= jedisCluster.get("userName");
-        logger.debug("查询集群，得知key为name的对应value为："+name);
+        String name;
+        try (JedisCluster jedisCluster = new JedisCluster(nodes, jedisPoolConfig)) {
+            name = jedisCluster.get("userName");
+            logger.debug("查询集群，得知key为name的对应value为：" + name);
+        } catch (Exception e) {
+            logger.error("JedisCluster init error", e);
+        }
 
     }
 }

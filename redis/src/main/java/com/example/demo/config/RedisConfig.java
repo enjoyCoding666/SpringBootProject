@@ -10,22 +10,20 @@ import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.cache.interceptor.KeyGenerator;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 import org.springframework.data.redis.cache.RedisCacheManager;
-import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
 
-import java.lang.reflect.Method;
-
 
 @Configuration
 @EnableCaching
 public class RedisConfig extends CachingConfigurerSupport {
-    @Value("${spring.redis.host}")
+    @Value("${spring.redis.host:localhost}")
     private String host;
-    @Value("${spring.redis.port}")
+    @Value("${spring.redis.port:6379}")
     private int port;
     @Value("${spring.redis.timeout}")
     private int timeout;
@@ -43,17 +41,14 @@ public class RedisConfig extends CachingConfigurerSupport {
 
     @Bean
     public KeyGenerator wiselyKeyGenerator() {
-        return new KeyGenerator() {
-            @Override
-            public Object generate(Object target, Method method, Object... params) {
-                StringBuilder sb = new StringBuilder();
-                sb.append(target.getClass().getName());
-                sb.append(method.getName());
-                for (Object obj : params) {
-                    sb.append(obj.toString());
-                }
-                return sb.toString();
+        return (target, method, params) -> {
+            StringBuilder sb = new StringBuilder();
+            sb.append(target.getClass().getName());
+            sb.append(method.getName());
+            for (Object obj : params) {
+                sb.append(obj.toString());
             }
+            return sb.toString();
         };
     }
 
@@ -75,6 +70,7 @@ public class RedisConfig extends CachingConfigurerSupport {
 
 
     @Bean
+    @Primary
     public CacheManager cacheManager(RedisTemplate redisTemplate) {
         RedisCacheManager cacheManager = new RedisCacheManager(redisTemplate);
         // Number of seconds before expiration. Defaults to unlimited (0)
@@ -83,11 +79,22 @@ public class RedisConfig extends CachingConfigurerSupport {
         return cacheManager;
     }
 
+    @Bean
+    public CacheManager cacheManagerOneHour() {
+        RedisTemplate<String, String> redisTemplate = redisTemplate();
+        RedisCacheManager cacheManager = new RedisCacheManager(redisTemplate);
+        // Number of seconds before expiration. Defaults to unlimited (0)
+        //设置key-value超时时间
+        cacheManager.setDefaultExpiration(60);
+        return cacheManager;
+    }
+
 
     @Bean
-    public RedisTemplate<String, String> redisTemplate(RedisConnectionFactory factory) {
+    public RedisTemplate<String, String> redisTemplate() {
+        JedisConnectionFactory factory = redisConnectionFactory();
         StringRedisTemplate template = new StringRedisTemplate(factory);
-        //设置序列化工具，这样ReportBean不需要实现Serializable接口
+        //设置序列化工具
         setSerializer(template);
         template.afterPropertiesSet();
         return template;

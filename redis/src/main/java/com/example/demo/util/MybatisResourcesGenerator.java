@@ -37,15 +37,15 @@ public class MybatisResourcesGenerator {
     /**
      * 如果输出的路径不对，修改 PATH
      */
-    private static final String PATH = "";
+    private static final String PATH = "redis";
 
     /**
      * jdbc配置。自行修改
      */
-    private static final String JDBC_MYSQL = "jdbc:mysql://数据库地址:端口/xx?useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true&useSSL=true";
+    private static final String JDBC_MYSQL = "jdbc:mysql://localhost:3306/test?useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true&useSSL=false";
     private static final String MYSQL_JDBC_DRIVER = "com.mysql.jdbc.Driver";
-    private static final String USER_NAME = "账号";
-    private static final String PASSWORD = "密码";
+    private static final String USER_NAME = "root";
+    private static final String PASSWORD = "123456";
 
     private static final String TABLE_PREFIX = "tb_";
     private static final String ENTITY_NAME = "Entity";
@@ -61,7 +61,7 @@ public class MybatisResourcesGenerator {
 
     /**
      * 生成数据库对应的entity, mapper, service, controller
-     * <p>
+     * 修改 包名、作者、路径、jdbc配置。
      * 运行main()方法，输入表名即可，多个表用逗号隔开
      */
     public static void main(String[] args) {
@@ -99,14 +99,13 @@ public class MybatisResourcesGenerator {
 
     /**
      * 如果输出的路径不对，修改 PATH
-     *
      * @param projectPath
      * @return
      */
     public static GlobalConfig getGlobalConfig(String projectPath) {
         GlobalConfig gc = new GlobalConfig();
         //如果输出的路径不对，修改 PATH
-        gc.setOutputDir(projectPath + PATH + "/src/main/java");
+        gc.setOutputDir(projectPath + "/" + PATH + "/src/main/java");
 
         //作者名称
         gc.setAuthor(AUTHOR);
@@ -123,7 +122,6 @@ public class MybatisResourcesGenerator {
 
     /**
      * 数据源配置
-     *
      * @return
      */
     public static DataSourceConfig getSourceConfig() {
@@ -138,7 +136,6 @@ public class MybatisResourcesGenerator {
 
     /**
      * 包配置
-     *
      * @return
      */
     public static PackageConfig getPackageConfig() {
@@ -154,7 +151,6 @@ public class MybatisResourcesGenerator {
 
     /**
      * 自定义配置
-     *
      * @param projectPath
      * @return
      */
@@ -170,7 +166,7 @@ public class MybatisResourcesGenerator {
             @Override
             public String outputFile(TableInfo tableInfo) {
                 // 自定义输入文件名称
-                return projectPath + PATH + RESOURCES_MAPPER_XML
+                return projectPath + "/" + PATH + RESOURCES_MAPPER_XML
                         + tableInfo.getMapperName() + StringPool.DOT_XML;
             }
         });
@@ -180,7 +176,6 @@ public class MybatisResourcesGenerator {
 
     /**
      * 策略配置
-     *
      * @return
      */
     public static StrategyConfig getStrategy() {
@@ -226,5 +221,8 @@ public class MybatisResourcesGenerator {
         throw new MybatisPlusException("请输入正确的" + tip + "！");
     }
 }
+
+
+
 
 

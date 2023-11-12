@@ -10,15 +10,16 @@ import redis.clients.jedis.JedisPoolConfig;
 /**
  * Redis通过连接池连接。
  */
-public class RedisUtils {
+public class JedisUtils {
 
-    private RedisUtils() {}
+    private JedisUtils() {
+    }
 
     private static JedisPool jedisPool = null;
 
     //通过单例模式获取链接
     public static synchronized Jedis getJedis() {
-        if(jedisPool == null){
+        if (jedisPool == null) {
             //创建config
             JedisPoolConfig jedisPoolConfig = new JedisPoolConfig();
             //控制一个pool最多有多少个状态为idle(空闲的)的jedis实例。
@@ -29,7 +30,7 @@ public class RedisUtils {
             jedisPoolConfig.setMaxWaitMillis(2000);
             //在borrow一个jedis实例时，是否提前进行validate操作；如果为true，则得到的jedis实例均是可用的；
             jedisPoolConfig.setTestOnBorrow(true);
-            jedisPool = new JedisPool(jedisPoolConfig, "127.0.0.1",6379);
+            jedisPool = new JedisPool(jedisPoolConfig, "127.0.0.1", 6379);
         }
         //返回连接池资源
         return jedisPool.getResource();
@@ -37,6 +38,13 @@ public class RedisUtils {
 
     public static void returnResource(Jedis jedis) {
         jedis.close();
+
+    }
+
+    public static void main(String[] args) {
+        Jedis jedis = JedisUtils.getJedis();
+        String name = jedis.get("userName");
+        System.out.println("userName:" + name);
 
     }
 
