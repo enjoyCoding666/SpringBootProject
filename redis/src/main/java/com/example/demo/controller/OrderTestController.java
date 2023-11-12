@@ -3,10 +3,7 @@ package com.example.demo.controller;
 
 import com.example.demo.domain.OrderTestEntity;
 import com.example.demo.service.impl.OrderTestServiceImpl;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -29,8 +26,8 @@ public class OrderTestController {
 
     @GetMapping("/id")
     @ResponseBody
-    public List<OrderTestEntity> getUserById() {
-        return orderTestService.getList("1");
+    public List<OrderTestEntity> getUserById(@RequestParam(value = "id") String id) {
+        return orderTestService.getList(id);
     }
 
     @GetMapping("/test")

@@ -1,6 +1,7 @@
 package com.example.demo.demo;
 
-import org.apache.log4j.Logger;
+
+import lombok.extern.slf4j.Slf4j;
 import redis.clients.jedis.HostAndPort;
 import redis.clients.jedis.JedisCluster;
 import redis.clients.jedis.JedisPoolConfig;
@@ -11,8 +12,9 @@ import java.util.Set;
 /**
  * jedis操作集群
  */
+@Slf4j
 public class RedisCluster {
-    private static Logger logger=Logger.getLogger(RedisCluster.class);
+
     public static void main(String[] args) {
 
         Set<HostAndPort> nodes=new HashSet<>();
@@ -37,9 +39,9 @@ public class RedisCluster {
         String name;
         try (JedisCluster jedisCluster = new JedisCluster(nodes, jedisPoolConfig)) {
             name = jedisCluster.get("userName");
-            logger.debug("查询集群，得知key为name的对应value为：" + name);
+            log.debug("查询集群，得知key为name的对应value为：" + name);
         } catch (Exception e) {
-            logger.error("JedisCluster init error", e);
+            log.error("JedisCluster init error", e);
         }
 
     }
